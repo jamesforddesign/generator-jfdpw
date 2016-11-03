@@ -1,6 +1,6 @@
 {
   "name": "generator-jfdpw",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A Yeoman Generator which will create everything needed to start a JFD Base ProcessWire project",
   "homepage": "https://github.com/jamesforddesign/generator-jfdpw",
   "author": {
