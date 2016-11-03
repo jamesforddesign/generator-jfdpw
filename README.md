@@ -3,7 +3,7 @@
 
 ## Installation
 
-Yeoman requires Node and NPM. So first chack if you have them installed by running the following in your terminal.
+Yeoman requires Node and NPM. So first check if you have them installed by running the following in your terminal.
 ```bash
 node -v
 npm -v
