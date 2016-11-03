@@ -3,7 +3,6 @@ var yeoman = require('yeoman-generator');
 var remote = require('yeoman-remote');
 var path = require('path');
 var mkdirp = require('mkdirp');
-var mysql = require('mysql');
 
 
 module.exports = yeoman.Base.extend({
