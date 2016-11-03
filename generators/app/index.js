@@ -3,6 +3,8 @@ var yeoman = require('yeoman-generator');
 var remote = require('yeoman-remote');
 var path = require('path');
 var mkdirp = require('mkdirp');
+var mysql = require('mysql');
+
 
 module.exports = yeoman.Base.extend({
     
@@ -11,47 +13,6 @@ module.exports = yeoman.Base.extend({
             if (err) console.error(err)
         });
     },
-
-    _private_createDatabase: function (answers) {
-        //console.log(answers.dbhost);
-    },
-
-    prompting: function () {
-        //Get Database Details
-        return this.prompt([{
-            type    : 'input',
-            name    : 'dbhost',
-            message : 'Your Database Hostname',
-            default : 'localhost'
-        },
-        {
-            type    : 'input',
-            name    : 'dbname',
-            message : 'Your Database Name'
-        },
-        {
-            type    : 'input',
-            name    : 'dbuser',
-            message : 'Your Database Username'
-        },
-        {
-            type    : 'password',
-            name    : 'dbpass',
-            message : 'Your Database Password'
-        },
-        {
-            type    : 'input',
-            name    : 'dbport',
-            message : 'Your Database Port',
-            default : '3306'
-        }
-        // Get Repo Details
-
-        ]).then( function (answers) {
-            this._private_createDatabase(answers);
-        }.bind(this));
-    },
-
 
     writing: function () {
         var done = this.async();
@@ -66,10 +27,13 @@ module.exports = yeoman.Base.extend({
         }.bind(this));
 
         // Get Latest Processwire
-        remote('ryancramerdesign', 'ProcessWire', function (err, cachePath) {
+        remote('processwire', 'processwire', function (err, cachePath) {
             this.fs.copy(
                 path.join(cachePath, ''),
-                this.destinationPath('website')
+                this.destinationPath('website'),
+                {  
+                    ignore: "site-*"
+                }
             );
             done();
         }.bind(this));
@@ -83,13 +47,5 @@ module.exports = yeoman.Base.extend({
             done();
         }.bind(this));
     }
-
-    // Install ProcessWire
-
-    // Run Gulp
-
-    // Tidy Up
-
-    // Commit
 
 });
